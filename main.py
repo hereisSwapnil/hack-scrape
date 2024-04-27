@@ -1,5 +1,9 @@
 from devpost import scrapeDevpost
 from mongodb import addHackathonsToMongoDB
+from devfolio import scrapeDevfolio
 
 if __name__ == "__main__":
-    addHackathonsToMongoDB(scrapeDevpost())
+    devfolioHackthons = scrapeDevfolio()
+    devpostHackthons = scrapeDevpost()
+    hackathons = devfolioHackthons + devpostHackthons
+    addHackathonsToMongoDB(hackathons)

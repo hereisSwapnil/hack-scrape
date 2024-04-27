@@ -60,7 +60,8 @@ def scrapeDevpost():
             "participants": participants.replace(" participants", "").replace(" participant", "").strip(),
             "themes": themes,
             "status": hackathonStatus.strip(),
-            "featured": isFeatured
+            "featured": isFeatured,
+            "source": "Devpost"
         }
         hackathons.append(hackathon)
         
