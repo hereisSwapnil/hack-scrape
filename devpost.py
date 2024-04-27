@@ -22,12 +22,11 @@ def scrapeDevpost():
         source = driver.page_source
         soup = bs(source, "html.parser")
         hackathonContainer = soup.find("div", attrs={"class": "hackathons-container"})
-        driver.execute_script("window.scrollBy(0, 3000)")
+        driver.execute_script("window.scrollBy(0, 2000)")
         endOfSearch = hackathonContainer.find("p", attrs={"class": "faded"})
         if(endOfSearch != None):
             reachedBottom = True
             break
-        print(endOfSearch)
         time.sleep(2)
     soup = bs(source, "html.parser")
     hackathonContainer = soup.find("div", attrs={"class": "hackathons-container"})
@@ -36,7 +35,6 @@ def scrapeDevpost():
     for div in hackthonDivs:
         isFeatured = False
         checkFeaturedDiv = div.find_all("a", attrs={"class": "featured-tab"})
-        print(checkFeaturedDiv)
         if(len(checkFeaturedDiv) > 0):
             isFeatured = True
         hackathonLink = div.find("a").get("href")
