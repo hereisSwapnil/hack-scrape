@@ -17,7 +17,6 @@ def scrapeDevpost():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.get(url)
     reachedBottom = False
-    
     while(not reachedBottom):
         source = driver.page_source
         soup = bs(source, "html.parser")
@@ -38,6 +37,9 @@ def scrapeDevpost():
         if(len(checkFeaturedDiv) > 0):
             isFeatured = True
         hackathonLink = div.find("a").get("href")
+        hackathonImage = div.find("img").get("src")
+        if(hackathonImage[:2] == "//"):
+            hackathonImage = "https:" + hackathonImage
         hackathonName = div.find("h3").text
         hackathonDate = div.find("div", attrs={"class": "submission-period"}).text
         hackathonLocation = div.find("div", attrs={"class": "info"}).text
@@ -55,6 +57,7 @@ def scrapeDevpost():
             "link": hackathonLink.strip(),
             "name": hackathonName.strip(),
             "date": hackathonDate.strip(),
+            "image": hackathonImage,
             "location": hackathonLocation.strip(),
             "prizes": prizes,
             "participants": participants.replace(" participants", "").replace(" participant", "").strip(),

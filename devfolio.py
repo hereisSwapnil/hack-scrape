@@ -59,6 +59,7 @@ def scrapeDevfolio():
                 "link": hackathonLink.strip(),
                 "name": hackathonName.strip(),
                 "date": hackathonDate.strip().replace("Starts ", ""),
+                "image": "",
                 "location": hackathonLocation.strip(),
                 "prizes": prizes,
                 "participants": participants.replace("participating", "").strip(),
